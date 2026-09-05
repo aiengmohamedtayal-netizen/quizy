@@ -1,0 +1,503 @@
+@import "tailwindcss";
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * QUIZY DESIGN SYSTEM — GLOBAL EDTECH DESIGN TOKENS
+ *
+ * Built on oklch with calibrated contrast, dark mode neutrality,
+ * and high-end typography using IBM Plex Sans Arabic.
+ */
+
+/* ==========================================================================
+   IBM Plex Sans Arabic — Local Font Declarations
+   ========================================================================== */
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("./assets/fonts/ibmplexsansarabic/IBMPlexSansArabic-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("./assets/fonts/ibmplexsansarabic/IBMPlexSansArabic-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("./assets/fonts/ibmplexsansarabic/IBMPlexSansArabic-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("./assets/fonts/ibmplexsansarabic/IBMPlexSansArabic-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("./assets/fonts/ibmplexsansarabic/IBMPlexSansArabic-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("./assets/fonts/ibmplexsansarabic/IBMPlexSansArabic-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("./assets/fonts/ibmplexsansarabic/IBMPlexSansArabic-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("./assets/fonts/ibmplexsansarabic/IBMPlexSansArabic-Bold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("./assets/fonts/ibmplexsansarabic/IBMPlexSansArabic-Bold.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme inline {
+  --font-sans:
+    "IBM Plex Sans Arabic", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 14px);
+  --radius-4xl: calc(var(--radius) + 20px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-brand-ruby: var(--brand-ruby);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Refined light theme — soft neutral backdrop, high readability */
+  --background: oklch(0.985 0.005 240);
+  --foreground: oklch(0.18 0.035 260);
+  --surface: oklch(1 0 0);
+  --surface-elevated: oklch(0.995 0.003 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.035 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.035 260);
+
+  /* Brand Primary & Ruby Burgundy Accent (Inspired by reference Arabic typography) */
+  --primary: oklch(0.44 0.17 255);
+  --primary-foreground: oklch(0.99 0.005 240);
+  --brand-ruby: oklch(0.46 0.19 22);
+
+  --secondary: oklch(0.95 0.012 240);
+  --secondary-foreground: oklch(0.24 0.04 260);
+  --muted: oklch(0.95 0.008 240);
+  --muted-foreground: oklch(0.46 0.025 260);
+  --accent: oklch(0.94 0.015 240);
+  --accent-foreground: oklch(0.22 0.04 250);
+
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.99 0.003 240);
+  --success: oklch(0.62 0.17 145);
+  --success-foreground: oklch(0.99 0.005 240);
+
+  --border: oklch(0.91 0.01 240);
+  --input: oklch(0.91 0.01 240);
+  --ring: oklch(0.44 0.17 255);
+
+  --chart-1: oklch(0.44 0.17 255);
+  --chart-2: oklch(0.62 0.17 145);
+  --chart-3: oklch(0.46 0.19 22);
+  --chart-4: oklch(0.75 0.16 75);
+  --chart-5: oklch(0.58 0.22 25);
+
+  --sidebar: oklch(0.985 0.005 240);
+  --sidebar-foreground: oklch(0.18 0.035 260);
+  --sidebar-primary: oklch(0.44 0.17 255);
+  --sidebar-primary-foreground: oklch(0.99 0.005 240);
+  --sidebar-accent: oklch(0.95 0.012 240);
+  --sidebar-accent-foreground: oklch(0.24 0.04 260);
+  --sidebar-border: oklch(0.91 0.01 240);
+  --sidebar-ring: oklch(0.44 0.17 255);
+}
+
+.dark {
+  /* Complete dark theme — sophisticated dark charcoal/zinc, zero pure black */
+  --background: oklch(0.14 0.02 260);
+  --foreground: oklch(0.96 0.008 240);
+  --surface: oklch(0.19 0.022 260);
+  --surface-elevated: oklch(0.24 0.025 260);
+  --card: oklch(0.19 0.022 260);
+  --card-foreground: oklch(0.96 0.008 240);
+  --popover: oklch(0.21 0.024 260);
+  --popover-foreground: oklch(0.96 0.008 240);
+
+  /* Primary & Ruby in Dark Mode — vivid & accessible */
+  --primary: oklch(0.72 0.14 250);
+  --primary-foreground: oklch(0.14 0.02 260);
+  --brand-ruby: oklch(0.68 0.18 22);
+
+  --secondary: oklch(0.23 0.025 260);
+  --secondary-foreground: oklch(0.94 0.01 240);
+  --muted: oklch(0.22 0.02 260);
+  --muted-foreground: oklch(0.68 0.02 260);
+  --accent: oklch(0.25 0.025 260);
+  --accent-foreground: oklch(0.96 0.008 240);
+
+  --destructive: oklch(0.68 0.2 25);
+  --destructive-foreground: oklch(0.99 0.003 240);
+  --success: oklch(0.72 0.16 145);
+  --success-foreground: oklch(0.14 0.02 260);
+
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.72 0.14 250);
+
+  --chart-1: oklch(0.72 0.14 250);
+  --chart-2: oklch(0.72 0.16 145);
+  --chart-3: oklch(0.68 0.18 22);
+  --chart-4: oklch(0.8 0.15 75);
+  --chart-5: oklch(0.68 0.2 25);
+
+  --sidebar: oklch(0.16 0.02 260);
+  --sidebar-foreground: oklch(0.96 0.008 240);
+  --sidebar-primary: oklch(0.72 0.14 250);
+  --sidebar-primary-foreground: oklch(0.14 0.02 260);
+  --sidebar-accent: oklch(0.23 0.025 260);
+  --sidebar-accent-foreground: oklch(0.94 0.01 240);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.72 0.14 250);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family:
+      "IBM Plex Sans Arabic",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+    line-height: 1.6;
+    letter-spacing: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Centralized Typography Hierarchy */
+  h1,
+  .font-display {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  h2,
+  .font-heading-2 {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  h3,
+  .font-heading-3 {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  p,
+  .font-body {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-weight: 400;
+  }
+
+  .font-body-medium {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-weight: 500;
+  }
+
+  label,
+  .font-label {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-weight: 600;
+  }
+
+  button,
+  .font-button {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-weight: 600;
+  }
+
+  .brand-title,
+  .font-black-tajawal {
+    font-family: "IBM Plex Sans Arabic", sans-serif;
+    font-weight: 700;
+  }
+}
+
+/* Subtle 3D, Haptic Surfaces & Double-Bezel Nested Architecture */
+@layer utilities {
+  .brand-ruby-text {
+    color: var(--color-brand-ruby);
+  }
+
+  /* Double-Bezel Outer Shell */
+  .double-bezel {
+    border-radius: 1.75rem;
+    padding: 0.375rem;
+    background: color-mix(in oklch, var(--color-border) 40%, transparent);
+    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.05);
+    border: 1px solid color-mix(in oklch, var(--color-border) 80%, transparent);
+    transition:
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Double-Bezel Inner Core */
+  .double-bezel-inner {
+    border-radius: calc(1.75rem - 0.375rem);
+    background-color: var(--color-card);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  }
+
+  .dark .double-bezel-inner {
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  }
+
+  /* Subtle 3D Card Hover Depth */
+  .surface-3d {
+    transition:
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .surface-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.08);
+  }
+
+  .dark .surface-3d:hover {
+    box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Tactile Button Push Physics */
+  .btn-tactile {
+    transition:
+      transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 0.15s ease;
+  }
+
+  .btn-tactile:active {
+    transform: scale(0.98) translateY(1px);
+  }
+
+  /* Subtle Geometric Dot Grid Pattern (As in reference image) */
+  .bg-grid-subtle {
+    background-image: radial-gradient(
+      circle,
+      color-mix(in oklch, var(--color-foreground) 8%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+  }
+
+  /* ==========================================================================
+     Motion Design System Tokens & Animation Primitives
+     ========================================================================== */
+  .animate-slide-in-right {
+    animation: slideInRight 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-caret {
+    animation: caretBlink 0.9s ease-in-out infinite;
+  }
+
+  .animate-soft-pulse {
+    animation: softPulse 2.4s ease-in-out infinite;
+  }
+
+  /* Staggered entrance delays */
+  .stagger-1 {
+    animation-delay: 40ms;
+  }
+  .stagger-2 {
+    animation-delay: 80ms;
+  }
+  .stagger-3 {
+    animation-delay: 130ms;
+  }
+  .stagger-4 {
+    animation-delay: 180ms;
+  }
+  .stagger-5 {
+    animation-delay: 240ms;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes caretBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes softPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(0.99);
+  }
+}
+
+/* Reduced Motion Support for Accessibility (WCAG 2.2) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

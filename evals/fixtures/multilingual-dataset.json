@@ -1,0 +1,181 @@
+[
+  {
+    "id": "ar_bio_01",
+    "language": "ar",
+    "topic": "علم الأحياء الخلوي",
+    "difficulty": "easy",
+    "bloomLevel": "remember",
+    "question": "ما هي العضية المسؤولة عن إنتاج الطاقة (ATP) في الخلية حقيقية النواة؟",
+    "options": ["الميتوكوندريا", "الريبوسومات", "جهاز جولجي", "الشبكة الإندوبلازمية"],
+    "correctIndex": 0,
+    "explanation": "الميتوكوندريا هي المسؤولة عن التنفس الخلوي وإنتاج معظم جزيئات ATP اللازمة لأنشطة الخلية.",
+    "evidenceQuote": "تعتبر الميتوكوندريا محطة توليد الطاقة في الخلية من خلال إنتاج جزيئات ثلاثي فوسفات الأدينوزين (ATP)."
+  },
+  {
+    "id": "ar_bio_02",
+    "language": "ar",
+    "topic": "علم الوراثة الجزيئية",
+    "difficulty": "medium",
+    "bloomLevel": "understand",
+    "question": "كيف تختلف بنية الحمض النووي الريبوزي (RNA) عن الحمض النووي (DNA)؟",
+    "options": [
+      "يحتوي RNA على سكر الريبوز وقاعدة اليوراسيل بدلاً من الثايمين ويكون في الغالب شريطاً مفرداً",
+      "يحتوي RNA على سكر منقوص الأكسجين وقاعدة الثايمين بدلاً من اليوراسيل",
+      "يتكون RNA من شريطين حلزونيين دائمين ولا يشارك في بناء البروتين",
+      "لا يحتوي RNA على قواعد نيتروجينية إطلاقاً"
+    ],
+    "correctIndex": 0,
+    "explanation": "يتميز RNA باحتوائه على سكر ريبوز تام الأكسجين واستبدال الثايمين باليوراسيل، ويكون عادة شريطاً مفرداً.",
+    "evidenceQuote": "يحتوي RNA على قاعدة اليوراسيل بدلاً من الثايمين وسكر الريبوز ويكون غالباً أحادي الشريط."
+  },
+  {
+    "id": "ar_calc_03",
+    "language": "ar",
+    "topic": "التفاضل والتكامل",
+    "difficulty": "hard",
+    "bloomLevel": "analyze",
+    "question": "إذا كانت المشتقة الأولى لدالة متصلة تنعدم عند نقطة c، وكانت المشتقة الثانية f''(c) سالبة، ماذا نستنتج عن النقطة c؟",
+    "options": [
+      "تمثل النقطة c قيمة عظمى محلية للدالة",
+      "تمثل النقطة c قيمة صغرى محلية للدالة",
+      "تمثل النقطة c نقطة انقلاب حتمية",
+      "الدالة غير معرفة عند النقطة c"
+    ],
+    "correctIndex": 0,
+    "explanation": "وفق اختبار المشتقة الثانية، إذا كانت f'(c) = 0 و f''(c) < 0 فإن المنحنى مقعر للأسفل وتكون النقطة قيمة عظمى محلية.",
+    "evidenceQuote": "إذا كانت المشتقة الأولى صفراً والمشتقة الثانية سالبة فإن النقطة تمثل قيمة عظمى محلية."
+  },
+  {
+    "id": "ar_hist_04",
+    "language": "ar",
+    "topic": "التاريخ الإسلامي",
+    "difficulty": "medium",
+    "bloomLevel": "understand",
+    "question": "ما هو الحدث الذي اعتبر بداية للتقويم الهجري في عهد الخليفة عمر بن الخطاب؟",
+    "options": [
+      "هجرة النبي صلى الله عليه وسلم من مكة إلى المدينة المنورة",
+      "نزول الوحي في غار حراء",
+      "فتح مكة المكرمة",
+      "معركة بدر الكبرى"
+    ],
+    "correctIndex": 0,
+    "explanation": "اعتمد المسلمون في عهد عمر بن الخطاب رضي الله عنه الهجرة النبوية الشريفة مبدأً للتاريخ الهجري لما مثلته من تحول استراتيجي وبناء للأمة.",
+    "evidenceQuote": "اعتمد التقويم الهجري بدءاً من تاريخ هجرة النبي من مكة إلى المدينة."
+  },
+  {
+    "id": "ar_cs_05",
+    "language": "ar",
+    "topic": "هياكل البيانات",
+    "difficulty": "medium",
+    "bloomLevel": "apply",
+    "question": "أي من هياكل البيانات التالية يعمل وفق مبدأ 'الداخل أولاً يخرج أولاً' (FIFO)؟",
+    "options": [
+      "طابور الانتظار (Queue)",
+      "المكدس (Stack)",
+      "شجرة البحث الثنائية (Binary Search Tree)",
+      "جدول الهاش (Hash Table)"
+    ],
+    "correctIndex": 0,
+    "explanation": "الطابور (Queue) يعمل بنظام First-In, First-Out (FIFO) حيث يُعالج العنصر الأقدم أولاً.",
+    "evidenceQuote": "يعمل هيكل بيانات الطابور بمبدأ الداخل أولاً يخرج أولاً FIFO."
+  },
+  {
+    "id": "en_cs_06",
+    "language": "en",
+    "topic": "Algorithm Complexity",
+    "difficulty": "hard",
+    "bloomLevel": "analyze",
+    "question": "What is the worst-case time complexity of finding an element in a balanced Binary Search Tree (AVL tree) with n elements?",
+    "options": ["O(log n)", "O(n)", "O(n log n)", "O(1)"],
+    "correctIndex": 0,
+    "explanation": "Because an AVL tree maintains height balance where height <= 1.44 log2(n), any search takes O(log n) time in the worst case.",
+    "evidenceQuote": "A balanced binary search tree guarantees search, insertion, and deletion operations in O(log n) time complexity."
+  },
+  {
+    "id": "en_calc_07",
+    "language": "en",
+    "topic": "Calculus",
+    "difficulty": "medium",
+    "bloomLevel": "apply",
+    "question": "What is the derivative of f(x) = ln(x^2 + 1) with respect to x?",
+    "options": ["2x / (x^2 + 1)", "1 / (x^2 + 1)", "2 / (x^2 + 1)", "x / (x^2 + 1)"],
+    "correctIndex": 0,
+    "explanation": "By the chain rule: d/dx[ln(u)] = (1/u) * u'. Here u = x^2 + 1, so u' = 2x, yielding 2x / (x^2 + 1).",
+    "evidenceQuote": "The derivative of natural logarithm ln(g(x)) equals g'(x) divided by g(x)."
+  },
+  {
+    "id": "en_phys_08",
+    "language": "en",
+    "topic": "Classical Mechanics",
+    "difficulty": "easy",
+    "bloomLevel": "remember",
+    "question": "According to Newton's Second Law of Motion, what is the mathematical relationship between net force (F), mass (m), and acceleration (a)?",
+    "options": ["F = m * a", "F = m / a", "F = a / m", "F = 0.5 * m * a^2"],
+    "correctIndex": 0,
+    "explanation": "Newton's Second Law states that force equals mass times acceleration (F = ma).",
+    "evidenceQuote": "Newton's second law states that the acceleration of an object is directly proportional to net force and inversely proportional to mass: F = ma."
+  },
+  {
+    "id": "en_db_09",
+    "language": "en",
+    "topic": "Database Systems",
+    "difficulty": "hard",
+    "bloomLevel": "understand",
+    "question": "Which ACID property guarantees that once a transaction has committed, its changes will persist even in the event of a power outage or crash?",
+    "options": ["Durability", "Atomicity", "Consistency", "Isolation"],
+    "correctIndex": 0,
+    "explanation": "Durability ensures that committed transactions survive subsequent system crashes through write-ahead logging (WAL) and disk flushes.",
+    "evidenceQuote": "Durability guarantees that the results of a committed transaction survive hardware failures and crashes."
+  },
+  {
+    "id": "mixed_med_10",
+    "language": "mixed",
+    "topic": "علم الأدوية - Pharmacology",
+    "difficulty": "medium",
+    "bloomLevel": "apply",
+    "question": "ما هي الآلية الأساسية لعمل أدوية الـ Beta-blockers (مثل Propranolol) في علاج الـ Hypertension؟",
+    "options": [
+      "حجب مستقبلات بيتا الأدرينالية مما يقلل من معدل ضربات القلب (Heart Rate) والنتاج القلبي (Cardiac Output)",
+      "تثبيط مضخة الصوديوم والبوتاسيوم في الخلايا الكلوية لزيادة إفراز الماء",
+      "توسيع الأوعية الدموية مباشرة عبر تثبيط مستقبلات الأستيل كولين",
+      "زيادة إفراز هرمون الأدرينالين من الغدة الكظرية"
+    ],
+    "correctIndex": 0,
+    "explanation": "تعمل حاصرات بيتا (Beta-blockers) على منافسة الكاتيكولامينات على مستقبلات بيتا-1 القلبية، مما يخفض سرعة وقوة انقباض عضلة القلب وبالتالي يخفض ضغط الدم.",
+    "evidenceQuote": "Beta-blockers antagonize beta-adrenergic receptors, reducing heart rate and cardiac output."
+  },
+  {
+    "id": "mixed_cs_11",
+    "language": "mixed",
+    "topic": "هندسة البرمجيات - Software Engineering",
+    "difficulty": "hard",
+    "bloomLevel": "analyze",
+    "question": "في معمارية Microservices، ما هو الدور الأساسي لنمط الـ Circuit Breaker Pattern؟",
+    "options": [
+      "منع انهيار النظام المتتابع (Cascading Failures) عند تعطل خدمة معينة وعزل الخطأ بسرعة",
+      "توزيع الأحمال المتساوية (Load Balancing) بين جميع خوادم قواعد البيانات",
+      "تشفير الاتصالات بين الخدمات عبر بروتوكول TLS 1.3 حصراً",
+      "مضاعفة عدد الطلبات المرسلة للخدمات البطيئة للتأكد من استجابتها"
+    ],
+    "correctIndex": 0,
+    "explanation": "يعمل الـ Circuit Breaker على مراقبة استجابات الخدمة، وعند تكرار الفشل يفتح الدائرة لمنع استنزاف الموارد ومنع انهيار الخدمات الأخرى التابعة.",
+    "evidenceQuote": "The Circuit Breaker pattern prevents an application from repeatedly trying to execute an operation that's likely to fail, preventing cascading failures."
+  },
+  {
+    "id": "mixed_ai_12",
+    "language": "mixed",
+    "topic": "الذكاء الاصطناعي - AI & Machine Learning",
+    "difficulty": "medium",
+    "bloomLevel": "understand",
+    "question": "ما هي المشكلة الأساسية التي يعالجها استخدام الـ Dropout في تدريب شبكات التعلم العميق (Deep Neural Networks)؟",
+    "options": [
+      "تقليل فرط التخصيص (Overfitting) وتحسين قدرة النموذج على التعميم (Generalization)",
+      "تسريع سرعة المعالجة على وحدات GPU بنسبة 100%",
+      "منع مشكلة انحدار التدرج اللامتناهي (Infinite Gradient)",
+      "إلغاء الحاجة لبيانات التدريب الضخمة"
+    ],
+    "correctIndex": 0,
+    "explanation": "يقوم Dropout بإسقاط عشوائي لنسبة من العصبونات أثناء التدريب، مما يمنع اعتمادها المشترك الزائد ويقلل الـ Overfitting.",
+    "evidenceQuote": "Dropout is a regularization technique that prevents overfitting by randomly dropping units during training."
+  }
+]
