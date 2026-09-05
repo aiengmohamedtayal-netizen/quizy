@@ -4,9 +4,14 @@
 
 Quizy turns study documents into interactive learning workflows: AI-generated quizzes, source-faithful question banks, performance tracking, spaced review, and an AI tutor.
 
-**Live Demo:** https://quizy.aiengmohamedtayal.workers.dev
+<p align="center">
+  <a href="https://quizy.aiengmohamedtayal.workers.dev">Live Demo</a> ·
+  <a href="docs/ARCHITECTURE.md">Architecture</a> ·
+  <a href="docs/ENGINEERING_DECISIONS.md">Engineering Decisions</a> ·
+  <a href="docs/SECURITY.md">Security</a>
+</p>
 
-## Why Quizy?
+## Product Overview
 
 Most study material is static. Quizy turns it into an active-recall workflow:
 
@@ -14,9 +19,7 @@ Most study material is static. Quizy turns it into an active-recall workflow:
 Document → Extraction → Assessment → Feedback → Mastery → Review
 ```
 
-The product deliberately separates two different trust models:
-
-| Mode | Purpose |
+| Workflow | Purpose |
 | --- | --- |
 | **AI Quiz Generation** | Create new practice questions from study material. |
 | **Exact Source** | Import existing questions while preserving source wording, choices, provenance, and available media. |
@@ -30,21 +33,21 @@ The product deliberately separates two different trust models:
 - Spaced Review workflows for targeted practice.
 - AI Tutor for post-answer explanations and assistance.
 - RTL-first Arabic UI with accessibility-conscious interaction and motion.
-- Responsive, production-deployed web application.
+- Responsive application deployed on Cloudflare Workers.
 
 ## Engineering Highlights
 
 ### Probabilistic AI behind deterministic application boundaries
 
-Model output is treated as untrusted input. Responses are validated against application schemas before persistence or rendering, and uncertain extraction is surfaced for review rather than silently invented.
+Model output is treated as untrusted input. Responses are schema-validated before persistence or rendering, and uncertain extraction is surfaced for review rather than silently invented.
 
 ### Source fidelity as a first-class invariant
 
-Exact Source is isolated from generated-question logic. Raw source data remains distinct from normalized/rendered representations so the application can preserve provenance instead of rewriting authoritative material.
+Exact Source is isolated from generated-question logic. Raw source data remains distinct from normalized and rendered representations so authoritative material can retain provenance without accidental rewriting.
 
 ### Server-first trust boundary
 
-AI and database credentials remain server-side. Browser code does not import server-only services, and privileged operations are exposed through server functions.
+AI and database credentials remain server-side. Browser code communicates with privileged services through server functions rather than importing server-only integrations.
 
 ### Split persistence model
 
@@ -53,7 +56,7 @@ Neon PostgreSQL  → relational application state
 Cloudflare R2    → uploaded documents + media
 ```
 
-This keeps structured state and binary objects independently managed while preserving references and metadata between them.
+The database stores structured state and references; object storage handles binary content independently.
 
 ## Architecture
 
@@ -61,16 +64,16 @@ This keeps structured state and binary objects independently managed while prese
 ┌──────────────────────────────┐
 │           Browser            │
 │ React 19 + TanStack Router  │
-│ local parsing / local state  │
+│ document parsing / UI state  │
 └──────────────┬───────────────┘
-               │ SSR / HTTP
+               │ HTTP / SSR
                ▼
 ┌──────────────────────────────┐
 │       Cloudflare Worker      │
 │ TanStack Start + Nitro       │
 │ Server Functions             │
 │ AI provider abstraction      │
-│ Learning services            │
+│ Learning / quiz services     │
 └──────────┬───────────┬───────┘
            │           │
            ▼           ▼
@@ -80,7 +83,7 @@ This keeps structured state and binary objects independently managed while prese
 └────────────────┘  └────────────────┘
 ```
 
-More detailed decisions are documented in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) and [`docs/ENGINEERING_DECISIONS.md`](docs/ENGINEERING_DECISIONS.md).
+See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the runtime model and trust boundaries.
 
 ## Tech Stack
 
@@ -107,8 +110,25 @@ src/
 
 tests/             # automated tests
 evals/             # model evaluation tooling
-docs/              # architecture and engineering decisions
+docs/              # architecture, decisions, security
 .github/workflows/ # CI quality gates
+```
+
+## Quality Gates
+
+Every push to `main` and pull request runs the repository quality gate:
+
+```text
+Install → Typecheck → Lint → Tests → Production Build
+```
+
+Run the same checks locally:
+
+```bash
+npx tsc --noEmit --skipLibCheck
+npm run lint
+npm test
+npm run build
 ```
 
 ## Development
@@ -140,32 +160,17 @@ npm run dev
 
 The development server is available at `http://localhost:5173`.
 
-## Quality Gates
-
-The repository includes CI checks for the main branch and pull requests:
-
-```text
-Install → Typecheck → Lint → Tests → Production Build
-```
-
-Run the same checks locally:
-
-```bash
-npx tsc --noEmit --skipLibCheck
-npm run lint
-npm test
-npm run build
-```
-
 ## Security
+
+Quizy treats browser input, uploaded documents, and AI output as untrusted data.
 
 - AI and database credentials are server-side only.
 - `.env` and deployment secrets are excluded from Git.
 - Imported content is not rendered through `dangerouslySetInnerHTML`.
-- AI responses are schema-validated before they cross into trusted application state.
+- AI responses are schema-validated before entering trusted application state.
 - Exact Source preserves provenance instead of silently rewriting authoritative content.
 
-See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the trust boundary and storage model.
+See [`docs/SECURITY.md`](docs/SECURITY.md) for the security model.
 
 ## Exact Source Guarantees
 
@@ -176,7 +181,7 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the trust boundary and st
 
 ## Engineering Decisions
 
-Key architectural choices are recorded as documentation rather than hidden in implementation details. See [`docs/ENGINEERING_DECISIONS.md`](docs/ENGINEERING_DECISIONS.md).
+Key architectural choices are documented explicitly, including persistence, object storage, AI validation, trust boundaries, deployment, and selective OCR. See [`docs/ENGINEERING_DECISIONS.md`](docs/ENGINEERING_DECISIONS.md).
 
 ## Contributing
 
@@ -186,6 +191,14 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for development and pull-request conven
 
 MIT — see [`LICENSE`](LICENSE).
 
+## Changelog
+
+See [`CHANGELOG.md`](CHANGELOG.md) for notable project changes.
+
+## Live Demo
+
+**Production:** https://quizy.aiengmohamedtayal.workers.dev
+
 ## Project Status
 
-Quizy is deployed on Cloudflare Workers. Production architecture, repository documentation, and local quality checks are kept aligned with the implementation; documentation intentionally avoids claiming features that are not implemented.
+Quizy is actively developed and deployed on Cloudflare Workers. Repository documentation is kept aligned with implemented architecture and avoids claiming unavailable functionality.
