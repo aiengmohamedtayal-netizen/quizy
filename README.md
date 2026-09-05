@@ -19,6 +19,8 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/github/actions/workflow/status/aiengmohamedtayal-netizen/quizy/ci.yml?branch=main&label=CI" alt="CI" />
+  <img src="https://img.shields.io/github/actions/workflow/status/aiengmohamedtayal-netizen/quizy/codeql.yml?branch=main&label=CodeQL" alt="CodeQL" />
   <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" alt="React 19" />
   <img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=white" alt="TypeScript strict" />
   <img src="https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare&logoColor=white" alt="Cloudflare Workers" />
@@ -117,35 +119,45 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the runtime model and tru
 ## Repository Structure
 
 ```text
-src/
-├── routes/        # application routes
-├── components/    # reusable UI
-├── lib/           # shared domain utilities and clients
-└── server/        # server-side functions and integrations
+src/                 # application source
+├── routes/          # application routes
+├── components/      # reusable UI components
+└── lib/             # domain utilities, AI, documents, persistence, learning
 
-tests/             # automated tests
-evals/             # model evaluation tooling
-docs/              # architecture, decisions, security
-assets/            # repository presentation artwork
-.github/workflows/ # CI quality gates
+tests/               # automated tests
+evals/               # model evaluation tooling
+docs/                # architecture, decisions, security
+assets/              # repository presentation artwork
+.github/             # CI, security, contribution and issue workflow
+migrations/          # database schema/migrations
+public/              # static web assets
 ```
 
 ## Quality Gates
 
-Every push to `main` and pull request runs the repository quality gate:
+Pull requests and pushes to `main` run the repository quality gate:
 
 ```text
-Install → Typecheck → Lint → Tests → Production Build
+Install → Typecheck → Lint → Format Check → Tests → Production Build
 ```
 
-Run the same checks locally:
+Run the same validation locally:
 
 ```bash
-npx tsc --noEmit --skipLibCheck
+npm run validate
+```
+
+Individual checks are also available:
+
+```bash
+npm run typecheck
 npm run lint
+npm run format:check
 npm test
 npm run build
 ```
+
+Security automation additionally includes CodeQL analysis and dependency review for pull requests.
 
 ## Development
 
