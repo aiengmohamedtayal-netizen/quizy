@@ -1,0 +1,6 @@
+# Default ownership for repository-level changes.
+# Update this file when additional maintainers are added.
+* @aiengmohamedtayal-netizen
+
+/.github/ @aiengmohamedtayal-netizen
+/docs/ @aiengmohamedtayal-netizen
