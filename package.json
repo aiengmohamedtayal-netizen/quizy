@@ -57,7 +57,7 @@
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
-    "lucide-react": "^0.575.0",
+    "lucide-react": "^1.39.0",
     "mammoth": "^1.12.0",
     "nitro": "3.0.260603-beta",
     "pdfjs-dist": "^5.7.284",
