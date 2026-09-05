@@ -1,10 +1,13 @@
--- Quizy Global AI Learning Platform - Relational Persistence Schema
--- Supports multi-tenancy, courses, source-grounded questions, Bloom taxonomy, mastery tracking, and spaced repetition.
+-- Quizy Learning Platform - Neon PostgreSQL Schema
+-- Relational persistence for learning data, Exact Source question banks, quizzes, attempts, and mastery.
+-- Object files and documents are stored in Cloudflare R2 and referenced via storage_key.
+
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 -- 1. Profiles & Roles
 CREATE TABLE IF NOT EXISTS public.profiles (
-  id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
-  full_name TEXT NOT NULL,
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  full_name TEXT NOT NULL DEFAULT 'مستخدم كويزي',
   avatar_url TEXT,
   role TEXT NOT NULL DEFAULT 'student' CHECK (role IN ('student', 'teacher', 'admin', 'org_admin')),
   preferred_language TEXT NOT NULL DEFAULT 'ar',
@@ -60,7 +63,7 @@ CREATE TABLE IF NOT EXISTS public.course_lessons (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- 4. Educational Documents & Knowledge Concepts
+-- 4. Educational Documents (with Cloudflare R2 storage key reference)
 CREATE TABLE IF NOT EXISTS public.documents (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
@@ -69,6 +72,10 @@ CREATE TABLE IF NOT EXISTS public.documents (
   file_name TEXT NOT NULL,
   file_size_bytes BIGINT NOT NULL,
   file_type TEXT NOT NULL,
+  storage_key TEXT, -- Cloudflare R2 object key (e.g. docs/uuid.pdf)
+  storage_bucket TEXT DEFAULT 'quizy-storage',
+  file_hash TEXT,
+  page_count INTEGER DEFAULT 1,
   extracted_text TEXT,
   summary TEXT,
   dominant_language TEXT NOT NULL DEFAULT 'ar',
@@ -84,7 +91,7 @@ CREATE TABLE IF NOT EXISTS public.concepts (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- 5. Question Bank
+-- 5. Question Bank (Supports AI Generated + Exact Source with Two-Hash Model)
 CREATE TABLE IF NOT EXISTS public.questions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   document_id UUID REFERENCES public.documents(id) ON DELETE SET NULL,
@@ -93,17 +100,34 @@ CREATE TABLE IF NOT EXISTS public.questions (
   question TEXT NOT NULL,
   options JSONB NOT NULL,
   correct_index INTEGER NOT NULL,
-  explanation TEXT NOT NULL,
-  topic TEXT NOT NULL,
-  difficulty TEXT NOT NULL CHECK (difficulty IN ('easy', 'medium', 'hard')),
+  explanation TEXT NOT NULL DEFAULT '',
+  topic TEXT NOT NULL DEFAULT 'عام',
+  difficulty TEXT NOT NULL DEFAULT 'medium' CHECK (difficulty IN ('easy', 'medium', 'hard')),
   bloom_level TEXT NOT NULL DEFAULT 'understand' CHECK (bloom_level IN ('remember', 'understand', 'apply', 'analyze', 'evaluate', 'create')),
   evidence_quote TEXT,
   quality_score JSONB,
   status TEXT NOT NULL DEFAULT 'validated' CHECK (status IN ('draft', 'generated', 'validated', 'approved', 'rejected', 'archived')),
+
+  -- Exact Source Invariants & Fidelity Fields
+  import_mode TEXT NOT NULL DEFAULT 'ai_generated' CHECK (import_mode IN ('ai_generated', 'exact_source')),
+  import_fidelity TEXT CHECK (import_fidelity IN ('exact', 'review_required', 'failed')),
+  original_text TEXT,
+  source_snapshot TEXT,
+  source_raw_hash TEXT,
+  canonical_question_hash TEXT,
+  render_source_exactly BOOLEAN DEFAULT FALSE,
+  correct_answer_source TEXT,
+  source_page INTEGER,
+  source_section TEXT,
+  source_question_number INTEGER,
+  source_document_name TEXT,
+  media_refs JSONB,
+  requires_review BOOLEAN DEFAULT FALSE,
+  review_reason TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
--- 6. Quiz Attempts & Learner Evidence
+-- 6. Quiz Attempts & Learner Answers
 CREATE TABLE IF NOT EXISTS public.quiz_attempts (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
@@ -153,6 +177,9 @@ CREATE TABLE IF NOT EXISTS public.review_schedules (
 CREATE INDEX IF NOT EXISTS idx_questions_topic ON public.questions(topic);
 CREATE INDEX IF NOT EXISTS idx_questions_difficulty ON public.questions(difficulty);
 CREATE INDEX IF NOT EXISTS idx_questions_bloom ON public.questions(bloom_level);
+CREATE INDEX IF NOT EXISTS idx_questions_import_mode ON public.questions(import_mode);
+CREATE INDEX IF NOT EXISTS idx_questions_canonical_hash ON public.questions(canonical_question_hash);
+CREATE INDEX IF NOT EXISTS idx_documents_storage_key ON public.documents(storage_key);
 CREATE INDEX IF NOT EXISTS idx_quiz_attempts_user ON public.quiz_attempts(user_id);
 CREATE INDEX IF NOT EXISTS idx_learner_mastery_user ON public.learner_mastery(user_id);
 CREATE INDEX IF NOT EXISTS idx_review_schedules_due ON public.review_schedules(user_id, next_review_at);

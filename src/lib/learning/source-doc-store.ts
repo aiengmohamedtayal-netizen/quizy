@@ -9,8 +9,7 @@
  * - Each ImportedQuestion references sourceDocumentId.
  * - The store is separate from MediaAsset store to keep concerns isolated.
  *
- * Future migration: this abstraction is ready to migrate to Supabase Storage
- * by replacing the IndexedDB implementation below without changing callers.
+ * Cloudflare R2 persistent storage via uploadSourceDocumentServerFn.
  */
 
 const DB_NAME = "quizy_source_docs_v1";

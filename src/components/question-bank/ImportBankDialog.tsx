@@ -29,6 +29,8 @@ import { toast } from "sonner";
 import { importExactBankFn } from "@/lib/quiz.functions";
 import { parseAndValidateDocument } from "@/lib/documents/document-service";
 import { saveExactSourceBank } from "@/lib/learning/question-bank";
+import { saveQuestionBankServerFn } from "@/lib/learning/persistence.functions";
+import { QuizyLogo } from "@/components/brand/QuizyLogo";
 import type {
   ImportedQuestion,
   ExactImportResult,
@@ -356,7 +358,10 @@ export function ImportBankDialog({ open, onOpenChange, onImportComplete }: Impor
       toast.error("لا يوجد أسئلة صالحة للاستيراد");
       return;
     }
-    saveExactSourceBank(toSave);
+    const savedItems = saveExactSourceBank(toSave);
+    saveQuestionBankServerFn({ data: { items: savedItems } }).catch((err) => {
+      console.warn("Neon question bank background sync failed:", err);
+    });
     toast.success(`تم حفظ ${toSave.length} سؤالاً في بنك الأسئلة!`);
     onImportComplete(toSave.length);
     setStep("done");
@@ -381,12 +386,17 @@ export function ImportBankDialog({ open, onOpenChange, onImportComplete }: Impor
         dir="rtl"
       >
         <DialogHeader className="space-y-2 text-right">
-          <DialogTitle className="text-xl sm:text-2xl font-heading-2 text-foreground">
-            استيراد بنك أسئلة
-          </DialogTitle>
-          <DialogDescription className="text-xs text-muted-foreground font-body">
-            ارفع ملف بنك الأسئلة واستخرج الأسئلة كما هي — بدون أي تعديل أو إعادة صياغة.
-          </DialogDescription>
+          <div className="flex items-center gap-3">
+            <QuizyLogo variant="icon" size={36} />
+            <div>
+              <DialogTitle className="text-xl sm:text-2xl font-heading-2 text-foreground">
+                استيراد بنك أسئلة
+              </DialogTitle>
+              <DialogDescription className="text-xs text-muted-foreground font-body">
+                ارفع ملف بنك الأسئلة واستخرج الأسئلة كما هي — بدون أي تعديل أو إعادة صياغة.
+              </DialogDescription>
+            </div>
+          </div>
         </DialogHeader>
 
         {/* Step Indicator */}

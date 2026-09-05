@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Sparkles, Zap, LayoutDashboard, Database, RotateCcw, Menu, X } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Zap, LayoutDashboard, Database, RotateCcw, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { QuizyLogo } from "@/components/brand/QuizyLogo";
 import { cn } from "@/lib/utils";
 
 export type MainNavTab = "studio" | "dashboard" | "bank";
@@ -30,27 +30,23 @@ export function Navbar({ activeTab, onTabChange, canReset, onReset }: NavbarProp
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md transition-colors duration-200">
-      <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:py-3.5">
-        {/* Brand & Logo */}
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-md shadow-primary/20 surface-3d">
-            <Sparkles className="h-5 w-5" />
+      <div className="container mx-auto flex max-w-6xl items-center justify-between px-4 py-2.5 sm:py-3">
+        {/* Brand & Logo with New Visual Identity */}
+        <button
+          type="button"
+          onClick={() => handleSelect("studio")}
+          className="text-right focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary rounded-xl cursor-pointer"
+          aria-label="الصفحة الرئيسية — كويزي"
+        >
+          {/* Desktop full horizontal logo */}
+          <div className="hidden sm:block">
+            <QuizyLogo variant="horizontal" size={38} showTagline={true} showArabicBadge={true} />
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xl font-display text-foreground tracking-tight">كويزي</span>
-              <Badge
-                variant="outline"
-                className="hidden sm:inline-flex text-[10px] py-0 px-2 font-bold text-primary border-primary/30"
-              >
-                Learn. Practice. Master.
-              </Badge>
-            </div>
-            <p className="text-[11px] text-muted-foreground font-body-medium hidden md:block">
-              منصة التدريب والمراجعة لاختبار فهمك وتثبيت معلوماتك
-            </p>
+          {/* Mobile compact logo */}
+          <div className="sm:hidden">
+            <QuizyLogo variant="compact" size={32} />
           </div>
-        </div>
+        </button>
 
         {/* Desktop Central Navigation Pill */}
         <nav

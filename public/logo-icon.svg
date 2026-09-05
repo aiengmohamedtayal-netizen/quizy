@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <!-- Q-Ring Radial/Linear Gradient -->
+    <linearGradient id="qRingGrad" x1="80" y1="120" x2="440" y2="440" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="25%" stop-color="#0EA5E9" />
+      <stop offset="55%" stop-color="#2563EB" />
+      <stop offset="85%" stop-color="#7C3AED" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+
+    <!-- Q Tail Gradient -->
+    <linearGradient id="qTailGrad" x1="240" y1="310" x2="430" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="50%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#C084FC" />
+    </linearGradient>
+
+    <!-- Mortarboard Diamond Gradient -->
+    <linearGradient id="capGrad" x1="260" y1="50" x2="280" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#F1F5F9" />
+      <stop offset="100%" stop-color="#CBD5E1" />
+    </linearGradient>
+
+    <!-- Mortarboard Skullcap Gradient -->
+    <linearGradient id="skullCapGrad" x1="240" y1="140" x2="280" y2="190" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E2E8F0" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </linearGradient>
+
+    <!-- Center Aperture Glow / Cavity -->
+    <radialGradient id="apertureGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+
+    <!-- Drop Shadow for Mortarboard & Details -->
+    <filter id="capShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#020617" flood-opacity="0.35" />
+    </filter>
+
+    <filter id="qShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#1E1B4B" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Energy Sparkles / Rays at Top-Left (10 o'clock) -->
+  <rect x="156" y="90" width="12" height="38" rx="6" transform="rotate(-35 156 90)" fill="#38BDF8" opacity="0.95" />
+  <rect x="125" y="130" width="10" height="32" rx="5" transform="rotate(-65 125 130)" fill="#38BDF8" opacity="0.9" />
+
+  <!-- Main Q Group with Shadow -->
+  <g filter="url(#qShadow)">
+    <!-- Base Outer Q Body (Thick loop with fluid tail) -->
+    <path
+      d="M246 112
+         C145 112 68 189 68 288
+         C68 387 145 464 246 464
+         C290 464 330 448 362 422
+         C376 438 398 454 425 454
+         C448 454 466 438 466 414
+         C466 382 432 360 398 344
+         C415 328 424 308 424 288
+         C424 189 347 112 246 112 Z"
+      fill="url(#qRingGrad)"
+    />
+
+    <!-- Sweeping Tail Ribbon Overlay for 3D depth -->
+    <path
+      d="M275 390
+         C325 390 365 372 400 348
+         C434 366 454 388 454 412
+         C454 426 442 438 424 438
+         C394 438 368 412 348 388
+         C320 398 290 402 260 400
+         Z"
+      fill="url(#qTailGrad)"
+    />
+
+    <!-- Inner Dark Cavity / Aperture -->
+    <circle cx="246" cy="288" r="92" fill="url(#apertureGlow)" stroke="#1E293B" stroke-width="2" />
+  </g>
+
+  <!-- Quiz Checklist inside the Q Aperture -->
+  <g transform="translate(192, 236)">
+    <!-- Row 1: White/Ice-Blue Check -->
+    <circle cx="16" cy="14" r="8" fill="#F0F9FF" />
+    <rect x="36" y="8" width="62" height="12" rx="6" fill="#F0F9FF" />
+
+    <!-- Row 2: Cyan Check -->
+    <circle cx="16" cy="48" r="8" fill="#38BDF8" />
+    <rect x="36" y="42" width="62" height="12" rx="6" fill="#38BDF8" />
+
+    <!-- Row 3: Purple Check -->
+    <circle cx="16" cy="82" r="8" fill="#C084FC" />
+    <rect x="36" y="76" width="46" height="12" rx="6" fill="#C084FC" />
+  </g>
+
+  <!-- Mortarboard / Graduation Cap -->
+  <g filter="url(#capShadow)">
+    <!-- Skull Cap Base under board -->
+    <path
+      d="M210 152
+         C210 152 225 186 265 186
+         C305 186 325 156 325 156
+         C315 174 290 196 265 196
+         C240 196 218 174 210 152 Z"
+      fill="url(#skullCapGrad)"
+    />
+
+    <!-- Diamond Board (tilted ~15 degrees) -->
+    <polygon
+      points="265,58 392,126 268,184 140,116"
+      fill="url(#capGrad)"
+      stroke="#E2E8F0"
+      stroke-width="1.5"
+      stroke-linejoin="round"
+    />
+
+    <!-- Board Bevel Highlight line -->
+    <polyline
+      points="140,116 268,184 392,126"
+      stroke="#CBD5E1"
+      stroke-width="3"
+      fill="none"
+      stroke-linecap="round"
+    />
+
+    <!-- Button & Tassel -->
+    <ellipse cx="266" cy="120" rx="6" ry="4" fill="#E2E8F0" stroke="#94A3B8" stroke-width="1" />
+    <path
+      d="M266 122
+         C290 126 345 142 368 170
+         C374 177 378 190 380 204"
+      stroke="#E2E8F0"
+      stroke-width="3"
+      fill="none"
+      stroke-linecap="round"
+    />
+    <!-- Tassel Ribbon Tip -->
+    <rect x="375" y="198" width="9" height="24" rx="4.5" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+  </g>
+</svg>

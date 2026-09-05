@@ -10,22 +10,24 @@ import {
 
 import appCss from "../styles.css?url";
 import { ThemeProvider } from "../lib/theme";
+import { QuizyLogo } from "@/components/brand/QuizyLogo";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
+      <div className="max-w-md text-center flex flex-col items-center">
+        <QuizyLogo variant="full" size={64} className="mb-4" />
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">الصفحة غير موجودة</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          الصفحة التي تبحث عنها غير موجودة أو تم نقلها.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            العودة للرئيسية
           </Link>
         </div>
       </div>
@@ -39,12 +41,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
+      <div className="max-w-md text-center flex flex-col items-center">
+        <QuizyLogo variant="full" size={64} className="mb-4" />
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          حدث خطأ أثناء تحميل الصفحة
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          حدث خطأ غير متوقع. يمكنك إعادة المحاولة أو العودة للرئيسية.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -73,19 +76,46 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "كويزي — حوّل ملفاتك إلى كويز تفاعلي" },
+      { title: "Quizy — كويزي | منصة المذاكرة والتدريب الذكي" },
       {
         name: "description",
         content:
-          "ارفع ملف PDF أو DOCX أو TXT يحتوي على أسئلة وحوّله تلقائياً إلى كويز دراسي تفاعلي بالعربية.",
+          "ارفع ملف PDF أو DOCX أو TXT وحوّله فوراً إلى كويز دراسي تفاعلي وبنك أسئلة متكامل بالعربية.",
       },
-      { name: "author", content: "كويزي" },
-      { property: "og:title", content: "كويزي — حوّل ملفاتك إلى كويز" },
-      { property: "og:description", content: "كويز تفاعلي بالعربية من ملفاتك الدراسية." },
+      { name: "author", content: "Quizy — كويزي" },
+      { name: "theme-color", content: "#0284C7" },
+      { property: "og:title", content: "Quizy — كويزي | Turn Your Knowledge Into Progress" },
+      {
+        property: "og:description",
+        content: "منصة التدريب والمراجعة الذكية لاختبار فهمك وتثبيت معلوماتك بالعربية.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:image", content: "/og-image.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Quizy — كويزي" },
+      { name: "twitter:image", content: "/og-image.jpg" },
     ],
     links: [
+      {
+        rel: "icon",
+        type: "image/svg+xml",
+        href: "/favicon.svg",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/favicon-32x32.png",
+      },
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/apple-touch-icon.png",
+      },
+      {
+        rel: "manifest",
+        href: "/manifest.json",
+      },
       {
         rel: "stylesheet",
         href: appCss,

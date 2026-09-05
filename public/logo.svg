@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 200" fill="none">
+  <defs>
+    <linearGradient id="logoQRingGrad" x1="40" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="35%" stop-color="#0EA5E9" />
+      <stop offset="65%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+
+    <linearGradient id="logoCapGrad" x1="100" y1="20" x2="120" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#CBD5E1" />
+    </linearGradient>
+
+    <radialGradient id="logoApertureGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+
+    <linearGradient id="swooshGrad" x1="220" y1="175" x2="520" y2="175" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="50%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+
+    <filter id="logoShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- 1. ICON MARK (Left Side) -->
+  <g transform="translate(10, 8) scale(0.36)" filter="url(#logoShadow)">
+    <!-- Rays -->
+    <rect x="156" y="90" width="12" height="38" rx="6" transform="rotate(-35 156 90)" fill="#38BDF8" />
+    <rect x="125" y="130" width="10" height="32" rx="5" transform="rotate(-65 125 130)" fill="#38BDF8" />
+
+    <!-- Q Outer Body -->
+    <path
+      d="M246 112
+         C145 112 68 189 68 288
+         C68 387 145 464 246 464
+         C290 464 330 448 362 422
+         C376 438 398 454 425 454
+         C448 454 466 438 466 414
+         C466 382 432 360 398 344
+         C415 328 424 308 424 288
+         C424 189 347 112 246 112 Z"
+      fill="url(#logoQRingGrad)"
+    />
+
+    <!-- Inner Aperture -->
+    <circle cx="246" cy="288" r="92" fill="url(#logoApertureGlow)" stroke="#1E293B" stroke-width="2" />
+
+    <!-- Checklist -->
+    <g transform="translate(192, 236)">
+      <circle cx="16" cy="14" r="8" fill="#F0F9FF" />
+      <rect x="36" y="8" width="62" height="12" rx="6" fill="#F0F9FF" />
+      <circle cx="16" cy="48" r="8" fill="#38BDF8" />
+      <rect x="36" y="42" width="62" height="12" rx="6" fill="#38BDF8" />
+      <circle cx="16" cy="82" r="8" fill="#C084FC" />
+      <rect x="36" y="76" width="46" height="12" rx="6" fill="#C084FC" />
+    </g>
+
+    <!-- Mortarboard -->
+    <polygon
+      points="265,58 392,126 268,184 140,116"
+      fill="url(#logoCapGrad)"
+      stroke="#E2E8F0"
+      stroke-width="2"
+      stroke-linejoin="round"
+    />
+    <polyline points="140,116 268,184 392,126" stroke="#CBD5E1" stroke-width="3" fill="none" />
+    <ellipse cx="266" cy="120" rx="6" ry="4" fill="#E2E8F0" />
+    <path d="M266 122 C290 126 345 142 368 170 C374 177 378 190 380 204" stroke="#E2E8F0" stroke-width="3" fill="none" />
+    <rect x="375" y="198" width="9" height="24" rx="4.5" fill="#FFFFFF" />
+  </g>
+
+  <!-- 2. WORDMARK "Quizy" -->
+  <g transform="translate(200, 30)">
+    <!-- Letter Q -->
+    <text
+      x="0"
+      y="92"
+      font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+      font-weight="800"
+      font-size="94"
+      fill="currentColor"
+      letter-spacing="-2"
+    >
+      Quizy
+    </text>
+
+    <!-- Cyan Dot on the "i" -->
+    <!-- The "i" in "Quizy" is at offset x ~ 230 depending on font, so we layer a glowing cyan dot on top -->
+    <circle cx="218" cy="30" r="11" fill="#38BDF8" />
+    <circle cx="218" cy="30" r="11" fill="#38BDF8" filter="url(#logoShadow)" opacity="0.4" />
+
+    <!-- Tagline -->
+    <text
+      x="4"
+      y="126"
+      font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+      font-weight="500"
+      font-size="19"
+      fill="#94A3B8"
+      letter-spacing="1.5"
+    >
+      Turn Your Knowledge Into Progress
+    </text>
+
+    <!-- Curved Underline Swoosh -->
+    <path
+      d="M4 146 Q160 134 320 148"
+      stroke="url(#swooshGrad)"
+      stroke-width="3.5"
+      stroke-linecap="round"
+      fill="none"
+    />
+  </g>
+</svg>

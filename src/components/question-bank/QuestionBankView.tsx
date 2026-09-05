@@ -1,4 +1,5 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
+import { loadQuestionBankServerFn } from "@/lib/learning/persistence.functions";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -356,6 +357,25 @@ export function QuestionBankView({ onStartQuizFromQuestions }: QuestionBankViewP
   const [exactQuizQuestions, setExactQuizQuestions] = useState<QuestionBankItem[] | null>(null);
 
   const reload = () => setItems(getStoredQuestionBank());
+
+  useEffect(() => {
+    loadQuestionBankServerFn({ data: {} })
+      .then(({ items: serverItems }) => {
+        if (serverItems && serverItems.length > 0) {
+          setItems((current) => {
+            const map = new Map<string, QuestionBankItem>();
+            current.forEach((i) => map.set(i.id, i));
+            serverItems.forEach((i) => {
+              if (!map.has(i.id)) map.set(i.id, i);
+            });
+            return Array.from(map.values());
+          });
+        }
+      })
+      .catch((err) => {
+        console.warn("Neon question bank load fallback to local storage:", err);
+      });
+  }, []);
 
   const topics = useMemo(() => {
     const set = new Set<string>();

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="qRingGrad" x1="80" y1="120" x2="440" y2="440" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="35%" stop-color="#0EA5E9" />
+      <stop offset="65%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#A855F7" />
+    </linearGradient>
+    <linearGradient id="capGrad" x1="260" y1="50" x2="280" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#CBD5E1" />
+    </linearGradient>
+    <radialGradient id="apertureGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#020617" />
+    </radialGradient>
+  </defs>
+
+  <!-- Energy Sparkles -->
+  <rect x="156" y="90" width="12" height="38" rx="6" transform="rotate(-35 156 90)" fill="#38BDF8" />
+  <rect x="125" y="130" width="10" height="32" rx="5" transform="rotate(-65 125 130)" fill="#38BDF8" />
+
+  <!-- Q Body -->
+  <path
+    d="M246 112
+       C145 112 68 189 68 288
+       C68 387 145 464 246 464
+       C290 464 330 448 362 422
+       C376 438 398 454 425 454
+       C448 454 466 438 466 414
+       C466 382 432 360 398 344
+       C415 328 424 308 424 288
+       C424 189 347 112 246 112 Z"
+    fill="url(#qRingGrad)"
+  />
+
+  <!-- Aperture -->
+  <circle cx="246" cy="288" r="92" fill="url(#apertureGlow)" stroke="#1E293B" stroke-width="2" />
+
+  <!-- Checklist items -->
+  <g transform="translate(192, 236)">
+    <circle cx="16" cy="14" r="8" fill="#F0F9FF" />
+    <rect x="36" y="8" width="62" height="12" rx="6" fill="#F0F9FF" />
+    <circle cx="16" cy="48" r="8" fill="#38BDF8" />
+    <rect x="36" y="42" width="62" height="12" rx="6" fill="#38BDF8" />
+    <circle cx="16" cy="82" r="8" fill="#C084FC" />
+    <rect x="36" y="76" width="46" height="12" rx="6" fill="#C084FC" />
+  </g>
+
+  <!-- Mortarboard Cap -->
+  <polygon
+    points="265,58 392,126 268,184 140,116"
+    fill="url(#capGrad)"
+    stroke="#E2E8F0"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+  <polyline
+    points="140,116 268,184 392,126"
+    stroke="#CBD5E1"
+    stroke-width="3"
+    fill="none"
+  />
+  <ellipse cx="266" cy="120" rx="6" ry="4" fill="#E2E8F0" />
+  <path
+    d="M266 122 C290 126 345 142 368 170 C374 177 378 190 380 204"
+    stroke="#E2E8F0"
+    stroke-width="3"
+    fill="none"
+  />
+  <rect x="375" y="198" width="9" height="24" rx="4.5" fill="#FFFFFF" />
+</svg>

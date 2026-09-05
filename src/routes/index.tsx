@@ -52,8 +52,13 @@ import {
 } from "@/lib/learning/spaced-review";
 import { analyzeAttemptMastery, recordAttemptToStorage } from "@/lib/learning/mastery-engine";
 import { saveQuestionsToBank, getStoredQuestionBank } from "@/lib/learning/question-bank";
+import {
+  saveQuestionBankServerFn,
+  saveQuizAttemptServerFn,
+} from "@/lib/learning/persistence.functions";
 import { getBloomBadgeLabel } from "@/lib/i18n/translations";
 import { Navbar, type MainNavTab } from "@/components/Navbar";
+import { QuizyLogo } from "@/components/brand/QuizyLogo";
 import { TypewriterText, AnimatedNumber, TiltCard, MagneticButton } from "@/components/motion";
 
 export const Route = createFileRoute("/")({
@@ -297,8 +302,27 @@ function Index() {
         })),
       });
 
-      // Save to Question Bank
-      saveQuestionsToBank(questions, fileName || "ملف دراسي");
+      // Persist to Neon PostgreSQL
+      saveQuizAttemptServerFn({
+        data: {
+          totalQuestions: questions.length,
+          score,
+          percentage: Math.round((score / questions.length) * 100),
+          answers: questions.map((q, i) => ({
+            questionId: q.id || `q_${i}`,
+            selectedIndex: newAnswers[i] >= 0 ? newAnswers[i] : null,
+            isCorrect: newAnswers[i] === q.correctIndex,
+          })),
+        },
+      }).catch((err) => {
+        console.warn("Neon quiz attempt sync:", err);
+      });
+
+      // Save to Question Bank & sync to Neon
+      const savedBank = saveQuestionsToBank(questions, fileName || "ملف دراسي");
+      saveQuestionBankServerFn({ data: { items: savedBank } }).catch((err) => {
+        console.warn("Neon question bank sync:", err);
+      });
     } else {
       setCurrent(current + 1);
       setSelected(null);
@@ -464,6 +488,20 @@ function Index() {
         )}
       </main>
 
+      {/* Global Branded Footer */}
+      <footer className="mt-auto border-t border-border/70 bg-background/60 backdrop-blur-sm py-6 px-4">
+        <div className="container mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right">
+          <QuizyLogo variant="compact" size={28} />
+          <p className="text-xs text-muted-foreground font-body">
+            جميع الحقوق محفوظة © {new Date().getFullYear()} كويزي — منصة المذاكرة والتدريب التفاعلي
+            الذكي
+          </p>
+          <span className="text-[11px] font-button text-muted-foreground/80 hidden md:inline-block">
+            Turn Your Knowledge Into Progress
+          </span>
+        </div>
+      </footer>
+
       {/* Interactive AI Tutor Dialog */}
       {tutorQuestion && (
         <AiTutorDialog
@@ -509,11 +547,18 @@ function UploadView({
   return (
     <div className="space-y-8 animate-in fade-in duration-300">
       <div className="text-center space-y-3">
+        <div className="flex justify-center mb-1">
+          <QuizyLogo
+            variant="icon"
+            size={60}
+            className="hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+          />
+        </div>
         <Badge
           variant="secondary"
           className="px-3.5 py-1 font-button text-xs tracking-wide text-primary bg-primary/10 border-primary/20"
         >
-          كويزي | نظام المذاكرة والتدريب المستمر
+          Quizy — كويزي | نظام المذاكرة والتدريب المستمر
         </Badge>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-foreground tracking-tight leading-tight min-h-[2.5em] flex items-center justify-center">
           <TypewriterText
@@ -608,8 +653,8 @@ function PipelineLoadingView({
     <div className="double-bezel">
       <div className="double-bezel-inner p-8 md:p-10 space-y-8 animate-in fade-in duration-300">
         <div className="text-center space-y-3">
-          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-primary/10 text-primary shadow-inner ring-1 ring-primary/25 surface-3d animate-pulse">
-            <Brain className="h-8 w-8" />
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-3xl bg-primary/10 shadow-inner ring-1 ring-primary/25 surface-3d">
+            <QuizyLogo variant="icon" size={48} className="animate-pulse" />
           </div>
           <div>
             <h2 className="text-2xl md:text-3xl font-heading-2 text-foreground">

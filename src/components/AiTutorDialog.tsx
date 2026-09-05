@@ -22,6 +22,7 @@ import {
   Flame,
 } from "lucide-react";
 import { toast } from "sonner";
+import { QuizyLogo } from "@/components/brand/QuizyLogo";
 import { cn } from "@/lib/utils";
 import { TypewriterText } from "@/components/motion";
 
@@ -83,8 +84,8 @@ export function AiTutorDialog({
       >
         <DialogHeader className="space-y-2 text-right">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary shadow-xs ring-1 ring-primary/20 surface-3d">
-              <Bot className="h-6 w-6" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 shadow-xs ring-1 ring-primary/20 surface-3d">
+              <QuizyLogo variant="icon" size={30} />
             </div>
             <div>
               <DialogTitle className="text-xl sm:text-2xl font-heading-2 flex items-center gap-2 text-foreground">
