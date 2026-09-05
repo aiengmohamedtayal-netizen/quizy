@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://quizy.aiengmohamedtayal.workers.dev">Live Demo</a> ·
+  <a href="https://quizkco.pages.dev/">Live Demo</a> ·
   <a href="docs/ARCHITECTURE.md">Architecture</a> ·
   <a href="docs/ENGINEERING_DECISIONS.md">Engineering Decisions</a> ·
   <a href="docs/SECURITY.md">Security</a> ·
@@ -213,8 +213,8 @@ See [`CHANGELOG.md`](CHANGELOG.md) for notable project changes.
 
 ## Live Demo
 
-**Production:** https://quizy.aiengmohamedtayal.workers.dev
+**Production:** https://quizkco.pages.dev/
 
 ## Project Status
 
-Quizy is actively developed and deployed on Cloudflare Workers. Repository documentation is kept aligned with implemented architecture and avoids claiming unavailable functionality.
+Quizy is actively developed and deployed on Cloudflare infrastructure. Repository documentation is kept aligned with implemented architecture and avoids claiming unavailable functionality.
