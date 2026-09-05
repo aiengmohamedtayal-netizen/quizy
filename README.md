@@ -1,86 +1,59 @@
 # كويزي (Quizy)
 
-منصة تعليمية تحوّل ملفاتك الدراسية إلى بنك أسئلة ومراجعة ذكية.
+> **Learn. Practice. Master.**
 
----
+منصة تعليمية تحوّل محتواك الدراسي إلى تدريب فعّال: أسئلة تفاعلية، مراجعة، وبنك أسئلة يحافظ على المصدر الأصلي.
 
-## 🎯 المفهوم الأساسي
+**Live:** https://quizy.aiengmohamedtayal.workers.dev
 
-```
+## لماذا كويزي؟
+
+```text
 المحتوى → التدرّب → التذكّر → المراجعة → الإتقان
 ```
 
-يدعم كويزي طريقتين مختلفتين لإنشاء الأسئلة:
+كويزي يقدّم مسارين واضحين:
 
-| الوضع                  | الوصف                                                   |
-| ---------------------- | ------------------------------------------------------- |
-| **كويز من المحتوى**    | يفهم المحتوى ويولّد أسئلة جديدة بالذكاء الاصطناعي       |
-| **بنك الأسئلة الدقيق** | يستخرج الأسئلة الموجودة حرفياً من ملفك بدون إعادة صياغة |
+| الوضع | ماذا يفعل؟ |
+| --- | --- |
+| **كويز من المحتوى** | يحلل المادة الدراسية ويولّد أسئلة جديدة مناسبة للتدريب. |
+| **بنك الأسئلة الدقيق** | يستخرج بنك الأسئلة الموجود في الملف ويحوله إلى كويز تفاعلي مع الحفاظ على نص المصدر والاختيارات والوسائط عند توفرها. |
 
----
+## المميزات
 
-## ✨ المميزات الرئيسية
+- **PDF / DOCX / TXT** مع استخراج النص ودعم OCR للصفحات الممسوحة عند الحاجة.
+- **Exact Source Mode** مع `sourceRawHash` و`canonicalQuestionHash` للتحقق من سلامة المصدر والبنية.
+- **Question Bank 2.0** للبحث، الفلترة، الحفظ، المراجعة، والتحديد المتعدد.
+- **مراجعة الأخطاء** وتتبع الأداء عبر المحاولات.
+- **Mastery + Spaced Review** لتوجيه المراجعة بناءً على الأداء.
+- **AI Tutor** للشرح والمساعدة بعد الإجابة.
+- **RTL-first UI** مع دعم العربية وخط IBM Plex Sans Arabic المضمّن.
+- **Motion System** بحركات تفاعلية خفيفة ومراعية لإمكانية الوصول.
 
-- **دعم PDF، DOCX، TXT** — استخراج نصي أصلي مع دعم OCR للصفحات الممسوحة
-- **وضع Exact Source** — استخراج الأسئلة حرفياً مع التحقق من سلامة المصدر بالهاش
-- **مراجعة مفضوحة** — يعرف الأسئلة التي تحتاج مراجعة يدوية بوضوح
-- **محرك التذكّر** — خوارزمية تباعد زمني لتحديد أهم الأسئلة للمراجعة
-- **تتبع المستوى** — إحصاءات أداء ومؤشرات تحسّن لكل موضوع
-- **مدرّس ذكاء اصطناعي** — شرح فوري وحوارات موجّهة بعد كل إجابة
-- **دعم RTL كامل** — واجهة عربية أصيلة مع خط IBM Plex Sans Arabic
-- **نظام حركة متقدم** — انيميشن مدروس واجهة premium
+## المعمارية
 
----
-
-## 🏗️ المعمارية
-
-```
-src/
-├── routes/           # TanStack Router — صفحتا التطبيق الرئيسيتان
-├── components/
-│   ├── question-bank/ # ImportBankDialog, ExactQuizRunner, QuestionBankView
-│   ├── dashboard/     # مكونات لوحة التحكم والإحصاءات
-│   ├── motion/        # نظام الحركة والانيميشن
-│   └── ui/           # shadcn/ui components
-├── lib/
-│   ├── ai/           # Router، Provider، Quiz Generator، Exact Extractor
-│   ├── documents/    # PDF/DOCX/TXT parsing + OCR
-│   ├── learning/     # Question Bank، Mastery Engine، Spaced Review
-│   └── observability/ # Structured logging
-└── integrations/
-    └── supabase/     # Client + Auth (اختياري)
-
-tests/               # 76 اختبار — Document Ingestion، Exact Import، Security...
-evals/               # بنية تقييم موديل (للتشغيل المحلي فقط)
+```text
+Browser
+  │
+  ├── React 19 + TanStack Router
+  ├── PDF / DOCX / TXT parsing where appropriate
+  ├── Local cache / IndexedDB for browser-local state
+  │
+  ▼
+Cloudflare Worker
+  │
+  ├── TanStack Start SSR
+  ├── Server Functions
+  ├── AI Router / Provider
+  ├── Learning services
+  │
+  ├── Neon PostgreSQL (persistent relational data)
+  └── Cloudflare R2 (documents + media)
 ```
 
----
+> **Exact Source is intentionally separate from AI question generation.** The source document is authoritative; uncertain extraction is marked for review rather than guessed.
 
-## 🔑 نموذج Exact Source (المبدأ الأساسي)
-
-```
-المستند الأصلي
-     ↓
-استخراج نصي أصلي
-     ↓
-تحديد حدود الأسئلة (AI-assisted, لا إعادة صياغة)
-     ↓
-التحقق الحتمي
-     ↓
-سؤال مع هاشين:
-  sourceRawHash         → سلامة المصدر
-  canonicalQuestionHash → سلامة البنية
-```
-
-**ثلاث قواعد لا تُكسر:**
-
-- لا تخمّن — الإجابة غير المحددة = `requiresReview: true`
-- لا تغيّر المصدر — `sourceText` لا يُعدَّل أبداً
-- لا تفقد أي جزء بصمت — كل الصفحات تُعالَج مع progress حقيقي
-
----
-
-## ⚙️ التثبيت والتشغيل
+## التشغيل المحلي
 
 ### المتطلبات
 
@@ -99,75 +72,63 @@ npm install
 cp .env.example .env
 ```
 
-افتح `.env` وحدد:
+اضبط المتغيرات المطلوبة في `.env`. لا تضع أي secrets في GitHub.
 
-```env
-AI_API_KEY=your-api-key-here
-AI_BASE_URL=https://api.openai.com/v1
-AI_MODEL=gpt-4o-mini
-AI_PROVIDER=openai-compatible
-```
-
-للمهام الثقيلة (استخراج بنك الأسئلة من ملفات كبيرة):
-
-```env
-AI_FALLBACK_API_KEY=your-heavy-task-key
-AI_REASONING_MODEL=gpt-4o
-AI_MODEL_EXACT_EXTRACTION=gpt-4o
-```
-
-### التشغيل المحلي
+### التطوير
 
 ```bash
 npm run dev
 ```
 
-المتاح على: `http://localhost:5173`
+ثم افتح:
 
----
+```text
+http://localhost:5173
+```
 
-## 📦 الأوامر المتاحة
+## الأوامر
 
-| الأمر             | الوصف                              |
-| ----------------- | ---------------------------------- |
-| `npm run dev`     | خادم التطوير مع HMR                |
-| `npm run build`   | بناء للإنتاج                       |
-| `npm run preview` | معاينة بناء الإنتاج                |
-| `npm run test`    | تشغيل كل الاختبارات (76 اختبار)    |
-| `npm run lint`    | فحص الكود بـ ESLint                |
-| `npm run format`  | تنسيق الكود بـ Prettier            |
-| `npm run eval`    | تقييم الموديل (للتشغيل المحلي فقط) |
+| الأمر | الاستخدام |
+| --- | --- |
+| `npm run dev` | خادم التطوير مع HMR |
+| `npm run build` | بناء الإنتاج |
+| `npm run preview` | معاينة بناء الإنتاج |
+| `npm test` | تشغيل الاختبارات |
+| `npm run lint` | فحص ESLint |
+| `npm run format` | تنسيق Prettier |
+| `npm run eval` | تشغيل تقييمات الموديل محليًا |
 
----
+## جودة Exact Source
 
-## 🌍 الصيغ المدعومة
+المسار الدقيق يتبع هذه القواعد:
 
-| الصيغة  | الاستخراج | OCR                 |
-| ------- | --------- | ------------------- |
-| `.pdf`  | نصي أصلي  | ✅ للصفحات الممسوحة |
-| `.docx` | ✅        | ❌                  |
-| `.txt`  | ✅        | ❌                  |
+1. **لا تخمّن** — الإجابة أو الوسائط غير الموثقة تتحول إلى `review_required`.
+2. **لا تغيّر المصدر** — `sourceText` و`sourceSnapshot` مصدران غير قابلين للتعديل.
+3. **لا تفقد المحتوى بصمت** — المستندات الكبيرة تُعالَج بالكامل مع progress حقيقي.
+4. **لا تعيد التوليد** — Exact Quiz يعرض البيانات المستوردة ولا يستدعي مسار توليد الأسئلة.
 
----
+## الأمان
 
-## 🔒 الأمان
+- مفاتيح AI وقاعدة البيانات تبقى server-side.
+- لا تُدرج `.env` أو مفاتيح حقيقية في المستودع.
+- المحتوى المستورد لا يُعرض باستخدام `dangerouslySetInnerHTML`.
+- الاستجابات الخارجة من الـAI تمر عبر validation قبل التخزين أو العرض.
 
-- جميع مفاتيح AI في طبقة Server فقط — لا يُكشف منها شيء للـ client
-- المفاتيح الحساسة تُعمّى في الـ logs عبر `logger.ts`
-- `sourceText` لا يُعرض كـ `dangerouslySetInnerHTML` — دائماً React text node
-- اختبار أمان تلقائي يتحقق من عدم تسريب المفاتيح في build artifacts
+## الاختبارات
 
----
+قبل أي تغيير جوهري شغّل:
 
-## 🗄️ Supabase (اختياري)
+```bash
+npm test
+npx tsc --noEmit --skipLibCheck
+npm run lint
+npm run build
+```
 
-Supabase مدعوم للمصادقة والتخزين السحابي لكن ليس مطلوباً للتشغيل المحلي.
-التطبيق يعمل كاملاً بدون Supabase باستخدام `localStorage` و `IndexedDB`.
+## المساهمة
 
----
+راجع `CONTRIBUTING.md` قبل فتح Pull Request.
 
-## ⚠️ تنبيهات
+## الحالة الحالية
 
-- لا تضع مفاتيح API حقيقية في `.env.example` أو أي ملف يُرفع لـ GitHub
-- `evals/reports/` مُستثناة من Git — يتم توليدها محلياً
-- `ibmplexsansarabic/` — الخط مضمّن في المشروع لضمان العرض الصحيح بدون CDN
+Quizy منشور حاليًا على Cloudflare Workers. تفاصيل البنية والتشغيل الفعلية هي المصدر الموثوق؛ لا توثّق ميزة غير موجودة فعليًا.
