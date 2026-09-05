@@ -26,11 +26,11 @@ export default defineConfig(({ command }) => ({
     viteReact(),
     command === "build" &&
       nitro({
-        preset: "cloudflare-module",
+        preset: "cloudflare-pages",
         output: {
           dir: "dist",
-          serverDir: "dist/server",
-          publicDir: "dist/client",
+          serverDir: "dist/_worker.js",
+          publicDir: "dist",
         },
         cloudflare: {
           nodeCompat: true,
