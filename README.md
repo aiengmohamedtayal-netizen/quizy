@@ -1,14 +1,29 @@
-# Quizy
+<p align="center">
+  <img src="assets/repo-hero.svg" alt="Quizy — AI-powered learning and assessment platform" width="100%" />
+</p>
 
-> **AI-powered learning and assessment platform.**
+<p align="center">
+  <strong>AI-powered learning & assessment platform</strong>
+</p>
 
-Quizy turns study documents into interactive learning workflows: AI-generated quizzes, source-faithful question banks, performance tracking, spaced review, and an AI tutor.
+<p align="center">
+  Turn study material into quizzes, feedback, mastery, and review — with a source-faithful path for existing question banks.
+</p>
 
 <p align="center">
   <a href="https://quizy.aiengmohamedtayal.workers.dev">Live Demo</a> ·
   <a href="docs/ARCHITECTURE.md">Architecture</a> ·
   <a href="docs/ENGINEERING_DECISIONS.md">Engineering Decisions</a> ·
-  <a href="docs/SECURITY.md">Security</a>
+  <a href="docs/SECURITY.md">Security</a> ·
+  <a href="CHANGELOG.md">Changelog</a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=white" alt="TypeScript strict" />
+  <img src="https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare&logoColor=white" alt="Cloudflare Workers" />
+  <img src="https://img.shields.io/badge/PostgreSQL-Neon-4169E1?logo=postgresql&logoColor=white" alt="Neon PostgreSQL" />
+  <img src="https://img.shields.io/badge/License-MIT-22C55E" alt="MIT License" />
 </p>
 
 ## Product Overview
@@ -37,7 +52,7 @@ Document → Extraction → Assessment → Feedback → Mastery → Review
 
 ## Engineering Highlights
 
-### Probabilistic AI behind deterministic application boundaries
+### Probabilistic AI behind deterministic boundaries
 
 Model output is treated as untrusted input. Responses are schema-validated before persistence or rendering, and uncertain extraction is surfaced for review rather than silently invented.
 
@@ -111,6 +126,7 @@ src/
 tests/             # automated tests
 evals/             # model evaluation tooling
 docs/              # architecture, decisions, security
+assets/            # repository presentation artwork
 .github/workflows/ # CI quality gates
 ```
 
