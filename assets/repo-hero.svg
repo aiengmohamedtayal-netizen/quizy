@@ -1,0 +1,56 @@
+<svg width="1600" height="700" viewBox="0 0 1600 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="g" x1="150" y1="80" x2="1450" y2="620" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#22D3EE"/>
+    <stop offset="0.5" stop-color="#6366F1"/>
+    <stop offset="1" stop-color="#A855F7"/>
+  </linearGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="white" stop-opacity="0.95"/>
+    <stop offset="1" stop-color="#EDE9FE" stop-opacity="0.65"/>
+  </linearGradient>
+  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#4F46E5" flood-opacity="0.18"/>
+  </filter>
+  <filter id="blur"><feGaussianBlur stdDeviation="40"/></filter>
+</defs>
+<rect width="1600" height="700" rx="40" fill="#F8FAFC"/>
+<circle cx="260" cy="120" r="180" fill="#22D3EE" opacity="0.14" filter="url(#blur)"/>
+<circle cx="1340" cy="570" r="220" fill="#A855F7" opacity="0.13" filter="url(#blur)"/>
+<path d="M80 560C300 430 390 520 560 420C740 315 815 405 980 300C1130 205 1260 220 1510 90" stroke="url(#g)" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<g filter="url(#shadow)">
+  <g transform="translate(260 150) rotate(-9 220 160)">
+    <rect width="440" height="320" rx="30" fill="url(#glass)"/>
+    <rect x="30" y="28" width="110" height="14" rx="7" fill="#C4B5FD"/>
+    <rect x="30" y="72" width="300" height="18" rx="9" fill="#CBD5E1"/>
+    <rect x="30" y="108" width="250" height="14" rx="7" fill="#E2E8F0"/>
+    <rect x="30" y="166" width="330" height="20" rx="10" fill="#E0E7FF"/>
+    <circle cx="55" cy="222" r="14" fill="#22D3EE"/>
+    <rect x="82" y="210" width="210" height="16" rx="8" fill="#CBD5E1"/>
+    <circle cx="55" cy="264" r="14" fill="#6366F1"/>
+    <rect x="82" y="252" width="160" height="16" rx="8" fill="#CBD5E1"/>
+  </g>
+  <g transform="translate(860 190) rotate(8 220 150)">
+    <rect width="460" height="300" rx="32" fill="url(#glass)"/>
+    <text x="34" y="56" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#0F172A">What did you learn?</text>
+    <rect x="34" y="86" width="360" height="16" rx="8" fill="#E2E8F0"/>
+    <rect x="34" y="124" width="360" height="58" rx="18" fill="#ECFEFF" stroke="#A5F3FC"/>
+    <circle cx="66" cy="153" r="16" fill="#22D3EE"/>
+    <path d="M59 153L65 159L76 146" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="98" y="143" width="180" height="16" rx="8" fill="#67E8F9"/>
+    <rect x="34" y="198" width="360" height="58" rx="18" fill="#EEF2FF" stroke="#C7D2FE"/>
+    <circle cx="66" cy="227" r="16" fill="#6366F1"/>
+    <rect x="98" y="217" width="150" height="16" rx="8" fill="#A5B4FC"/>
+  </g>
+</g>
+<g transform="translate(650 105)">
+  <circle cx="150" cy="150" r="105" fill="url(#g)" opacity="0.95"/>
+  <path d="M95 172C95 125 116 94 153 94C191 94 210 123 210 172V210H95V172Z" fill="white" opacity="0.96"/>
+  <path d="M109 93L153 72L197 93L153 114L109 93Z" fill="white"/>
+  <path d="M205 97V137" stroke="white" stroke-width="9" stroke-linecap="round"/>
+  <path d="M226 162L246 146M233 182L258 182M95 84L70 68M82 109L55 109" stroke="url(#g)" stroke-width="8" stroke-linecap="round"/>
+</g>
+<text x="100" y="110" font-family="Arial, sans-serif" font-size="72" font-weight="800" fill="#0F172A">Quizy</text>
+<text x="103" y="162" font-family="Arial, sans-serif" font-size="28" font-weight="500" fill="#475569">AI-powered learning &amp; assessment</text>
+<text x="100" y="635" font-family="Arial, sans-serif" font-size="22" font-weight="600" fill="#64748B">Document → Assessment → Feedback → Mastery → Review</text>
+</svg>
