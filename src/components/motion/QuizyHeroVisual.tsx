@@ -16,7 +16,9 @@ export function QuizyHeroVisual() {
                 <h3 className="mt-1 text-lg font-semibold text-foreground">اختبر فهمك</h3>
               </div>
               <div className="grid size-11 place-items-center rounded-2xl bg-primary/10 text-primary">
-                <span aria-hidden="true" className="text-xl">?</span>
+                <span aria-hidden="true" className="text-xl">
+                  ?
+                </span>
               </div>
             </div>
 
@@ -40,7 +42,10 @@ export function QuizyHeroVisual() {
             </div>
           </div>
 
-          <FloatingVector className="absolute -right-10 -top-12 w-40 text-foreground/60 motion-safe:animate-[float_6s_ease-in-out_infinite]" intensity={5} />
+          <FloatingVector
+            className="absolute -right-10 -top-12 w-40 text-foreground/60 motion-safe:animate-[float_6s_ease-in-out_infinite]"
+            intensity={5}
+          />
           <div className="absolute -bottom-8 -left-8 grid size-24 place-items-center rounded-3xl border border-primary/20 bg-background/80 shadow-lg backdrop-blur-md motion-safe:animate-[float_7s_ease-in-out_infinite]">
             <div className="size-12 rounded-2xl bg-gradient-to-br from-cyan-400/20 to-violet-500/20" />
           </div>

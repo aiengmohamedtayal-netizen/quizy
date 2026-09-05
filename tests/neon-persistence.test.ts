@@ -55,13 +55,17 @@ import type { QuestionBankItem } from "../src/lib/learning/question-bank.ts";
 const TEST_USER_ID = "00000000-0000-4000-8000-000000000001";
 const TEST_DOC_ID = "00000000-0000-4000-8000-000000000002";
 
+const hasDb = Boolean(process.env.DATABASE_URL || process.env.NEON_DATABASE_URL);
+
 describe("Neon PostgreSQL & R2 Storage Persistence", () => {
   before(async () => {
+    if (!hasDb) return;
     // Ensure test user profile exists
     await profilesRepo.ensureProfile(TEST_USER_ID, "مستخدم الاختبار");
   });
 
   after(async () => {
+    if (!hasDb) return;
     // Cleanup created test records
     try {
       await documentsRepo.deleteDocument(TEST_DOC_ID);
@@ -98,7 +102,11 @@ describe("Neon PostgreSQL & R2 Storage Persistence", () => {
     assert.equal(afterDelete, null);
   });
 
-  test("Documents Repository: create, read, and delete document record", async () => {
+  test("Documents Repository: create, read, and delete document record", async (t) => {
+    if (!hasDb) {
+      t.skip("Skipping Neon test: DATABASE_URL not configured");
+      return;
+    }
     const doc = await documentsRepo.createDocument({
       id: TEST_DOC_ID,
       userId: TEST_USER_ID,
@@ -124,7 +132,11 @@ describe("Neon PostgreSQL & R2 Storage Persistence", () => {
     assert.equal(fetched!.file_name, "test-lecture.pdf");
   });
 
-  test("Exact Source Questions: full fidelity and two-hash preservation", async () => {
+  test("Exact Source Questions: full fidelity and two-hash preservation", async (t) => {
+    if (!hasDb) {
+      t.skip("Skipping Neon test: DATABASE_URL not configured");
+      return;
+    }
     const exactQuestion: QuestionBankItem = {
       id: "qb_exact_test_12345",
       question: "ما هو المبدأ الأساسي للتعلم المتباعد؟",
@@ -193,7 +205,11 @@ describe("Neon PostgreSQL & R2 Storage Persistence", () => {
     await questionsRepo.deleteQuestion(saved.id);
   });
 
-  test("Quiz Attempts Repository: records attempt and answers", async () => {
+  test("Quiz Attempts Repository: records attempt and answers", async (t) => {
+    if (!hasDb) {
+      t.skip("Skipping Neon test: DATABASE_URL not configured");
+      return;
+    }
     // First save a question to attach to answer
     const q = await questionsRepo.saveQuestion({
       id: "qb_temp_test_quiz_attempt",
@@ -240,7 +256,11 @@ describe("Neon PostgreSQL & R2 Storage Persistence", () => {
     await questionsRepo.deleteQuestion(q.id);
   });
 
-  test("Learner Mastery Repository: records topic mastery and retains progress", async () => {
+  test("Learner Mastery Repository: records topic mastery and retains progress", async (t) => {
+    if (!hasDb) {
+      t.skip("Skipping Neon test: DATABASE_URL not configured");
+      return;
+    }
     await masteryRepo.upsertTopicMastery(
       TEST_USER_ID,
       "البرمجة بلغة تايب سكريبت",
